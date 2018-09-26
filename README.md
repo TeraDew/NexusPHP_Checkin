@@ -19,9 +19,7 @@ __自动识别使用原生 NexusPHP 验证码的网站验证码并签到。__
 
 ### LICENSE
 
-### LICENSE
-
-Copyright (C) 2017 by TeraDew
+Copyright (C) 2018 by TeraDew
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
