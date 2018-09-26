@@ -5,7 +5,7 @@ import numpy as np
 
 
 def binary_captchar(pathname):
-    img = cv.imread('./python/captcha/'+pathname, 0)
+    img = cv.imread(os.path.join(os.path.abspath('.'), 'captcha',pathname), 0)
 
     ret, dst = cv.threshold(img, 10, 255, cv.THRESH_BINARY) #二值化
 
@@ -27,13 +27,11 @@ def binary_captchar(pathname):
             else:
                 bimg[i, j] = 255
     
-    cv.imwrite('./python/captcha/binary/' + 'binary_' + pathname, bimg)
+    cv.imwrite(os.path.join(os.path.abspath('.'), 'captcha','binary',('binary_' + pathname)), bimg)
 
     im2, contours, hierarchy = cv.findContours(bimg, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
 
     rects = [cv.minAreaRect(cnt) for cnt in contours] #每个轮廓取最小框
-
-    #ch0 = img[rects[0]]
 
     boxes = [np.int0(cv.boxPoints(box)) for box in rects] #填充
 
@@ -47,8 +45,8 @@ def binary_captchar(pathname):
         hight = y2 - y1
         width = x2 - x1
         crop =  bimg[y1 - 1:y1 + hight + 2, x1 - 1:x1 + width + 2]
-        cv.imwrite('./python/captcha/split/'+ str(time.time())+'.png',crop)
+        cv.imwrite(os.path.join(os.path.abspath('.'), 'captcha',(str(time.time())+'.png'),crop)
     
-for pathname in os.listdir('./python/captcha/'):
+for pathname in os.listdir(os.path.join(os.path.abspath('.'), 'captcha')):
     if pathname.split('.')[-1]=='png' or pathname.split('.')[-1]=='jpg':
         binary_captchar(pathname)

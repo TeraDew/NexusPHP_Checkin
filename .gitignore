@@ -1,0 +1,3 @@
+*.log
+*.txt
+__pycache__/captchaparse.cpython-36.pyc

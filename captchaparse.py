@@ -18,7 +18,7 @@ def get_captcha(img):
         sys.exit()
     
     list = []
-    templates_path='D:/LearnCfromzero/python/captcha/split/templates'
+    templates_path=os.path.join(os.path.abspath('.'), 'captcha','split','templates')
     for template_name in os.listdir(templates_path):
             tmp = cv.imread(os.path.join(templates_path, template_name))
             
@@ -60,8 +60,6 @@ def binary_captchar(pathname):
     im2, contours, hierarchy = cv.findContours(bimg, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
 
     rects = [cv.minAreaRect(cnt) for cnt in contours] #每个轮廓取最小框
-
-    #ch0 = img[rects[0]]
 
     boxes = [np.int0(cv.boxPoints(box)) for box in rects] #填充
     leftset = set()
@@ -114,8 +112,7 @@ def binary_captchar(pathname):
 
 
 if __name__ == '__main__':
-
-    captcha_floder='D:\LearnCFromZero\python\captcha\captcha'
+    captcha_floder=os.path.join(os.path.abspath('.'), 'captcha','captcha')# 测试
     for pathname in os.listdir(captcha_floder):
         if os.path.splitext(pathname)[-1] == '.png' or os.path.splitext(pathname)[-1] == '.jpg':
             print(binary_captchar(os.path.join(captcha_floder,pathname)))
