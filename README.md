@@ -17,6 +17,17 @@ __自动识别使用原生 NexusPHP 验证码的网站验证码并签到。__
 
 使用前，需要在checkin.py中替换域名。
 
+### 单独识别验证码
+
+如果您是开发者，想获取验证码返回值，请使用以下代码：
+
+```python
+from captchaparse import binary_captchar
+filepath = 'captcha.jpg'
+captcha_value = binary_captchar(filepath)
+```
+
+
 ### LICENSE
 
 Copyright (C) 2018 by TeraDew
